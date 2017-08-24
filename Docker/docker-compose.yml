@@ -21,14 +21,17 @@ services:
       - "3306"
     ports:
       - "3306:3306"
-    environment:
-        MYSQL_ROOT_PASSWORD: root5password6secret81
-        MYSQL_DATABASE: test-01j_task_list_db
-        MYSQL_USER: test-01j_task_list_user_db
-        MYSQL_PASSWORD: qwerty_or_12345
+    env_file: ./.env
+#    environment:
+#        MYSQL_ROOT_PASSWORD: root5password6secret81
+#        MYSQL_DATABASE: task_list_db
+#        MYSQL_USER: task_list_user
+#        MYSQL_PASSWORD: qwerty_or_12345
     volumes:
       - ./mysql/start_data/:/docker-entrypoint-initdb.d/
       - ./mysql/my.cnf:/etc/mysql/my.cnf
+    networks:
+     - task_list_network
 
   django:
     container_name: 2017_test-01j_task_list_django
@@ -40,6 +43,7 @@ services:
       - "8000"
     ports:
       - "82:8000"
+    env_file: ./.env
     volumes:
       - ../task_list:/usr/share/nginx/django
 #      - ../task_list/static:/usr/share/nginx/django/static
@@ -49,7 +53,8 @@ services:
       - db
     links:
       - db:db
-#    env_file: ./.env
+    networks:
+     - task_list_network
 
   nginx:
     container_name: 2017_test-01j_task_list_nginx
@@ -66,3 +71,8 @@ services:
       - ./nginx/site.conf:/etc/nginx/conf.d/deafult.conf
     volumes_from:
       - django:ro
+    networks:
+     - task_list_network
+
+networks:
+  task_list_network:

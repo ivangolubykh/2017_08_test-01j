@@ -75,10 +75,24 @@ WSGI_APPLICATION = 'task_list.wsgi.application'
 # https://docs.djangoproject.com/en/1.10/ref/settings/#databases
 
 DATABASES = {
+    # 'default': {
+    #     'ENGINE': 'django.db.backends.sqlite3',
+    #     'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+    # },
+
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    }
+        'ENGINE': 'django.db.backends.mysql',
+        'HOST': 'db',
+        'NAME': os.environ['MYSQL_DATABASE'],
+        'USER': os.environ['MYSQL_USER'],
+        'PASSWORD': os.environ['MYSQL_PASSWORD'],
+        'OPTIONS': {
+            'sql_mode': 'STRICT_ALL_TABLES',
+            'isolation_level': 'read committed',
+            'init_command': 'SET default_storage_engine=INNODB',
+            'autocommit': True,
+        },
+    },
 }
 
 
