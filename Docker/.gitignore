@@ -1,0 +1,4 @@
+/logs/
+/static/
+__pycache__/
+*.pyc
