@@ -1,0 +1,78 @@
+version: '2'
+
+# Установка docker-compose (http://docker.cool/docs/docker-compose/install-compose/):
+# sudo su
+# curl -L https://github.com/docker/compose/releases/download/1.15.0/docker-compose-`uname -s`-`uname -m` > /usr/local/bin/docker-compose
+# chmod +x /usr/local/bin/docker-compose
+# exit
+## sudo docker-compose build --no-cache
+# sudo docker-compose build
+# sudo docker-compose up -d
+# sudo docker-compose down
+
+
+services:
+#  dbmysql:
+  db:
+    container_name: 2017_test-01j_task_list_mysql
+    image: mysql:5.5
+    restart: always
+    expose:
+      - "3306"
+    ports:
+      - "3306:3306"
+    env_file: ./.env
+#    environment:
+#        MYSQL_ROOT_PASSWORD: root5password6secret81
+#        MYSQL_DATABASE: task_list_db
+#        MYSQL_USER: task_list_user
+#        MYSQL_PASSWORD: qwerty_or_12345
+    volumes:
+      - ./mysql/start_data/:/docker-entrypoint-initdb.d/
+      - ./mysql/my.cnf:/etc/mysql/my.cnf
+    networks:
+     - task_list_network
+
+  django:
+    container_name: 2017_test-01j_task_list_django
+    build:
+        context: .
+        dockerfile: Dockerfile.2017_test-01j_task_list_django
+    restart: always
+    expose:
+      - "8000"
+    ports:
+      - "82:8000"
+    env_file: ./.env
+    volumes:
+      - ../task_list:/usr/share/nginx/django
+#      - ../task_list/static:/usr/share/nginx/django/static
+#      - ../task_list/media:/usr/share/nginx/django/media
+      - ./logs/django:/usr/share/nginx/django_logs
+    depends_on:
+      - db
+    links:
+      - db:db
+    networks:
+     - task_list_network
+
+  nginx:
+    container_name: 2017_test-01j_task_list_nginx
+    image: nginx:alpine
+    restart: always
+    ports:
+      - "90:80"
+#    depends_on:
+#      - django
+    links:
+      - django:django
+    volumes:
+      - ./logs/nginx:/usr/share/nginx/logs
+      - ./nginx/site.conf:/etc/nginx/conf.d/deafult.conf
+    volumes_from:
+      - django:ro
+    networks:
+     - task_list_network
+
+networks:
+  task_list_network:

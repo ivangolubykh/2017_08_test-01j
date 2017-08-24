@@ -37,7 +37,7 @@
 # Добавить следующее в файл настроек settings.py:
 #if DEBUG:
 #    # автозапуск модуля панельки
-#    MIDDLEWARE_CLASSES += ('debug_toolbar.middleware.DebugToolbarMiddleware',)
+#    MIDDLEWARE += ('debug_toolbar.middleware.DebugToolbarMiddleware',)
 #    # включение панельки в список установленых приложений
 #    INSTALLED_APPS += ('debug_toolbar',)
 #    # IP-адрес браузера, а не сервера:
@@ -45,6 +45,8 @@
 #
 # Добавить следующее в файл urls.py:
 #if settings.DEBUG:
+#    from django.conf.urls import url, include
+#    from django.conf import settings
 #    import debug_toolbar
 #    urlpatterns += [
 #        url(r'^__debug__/', include(debug_toolbar.urls)),
