@@ -8,6 +8,7 @@ from django.http import Http404
 import json
 
 from .forms import EditTaskForm
+from .models import Task
 
 
 def main_page(request):
@@ -21,25 +22,8 @@ def get_csrf(request):
 
 
 def get_data_json(request):
-    data = [
-        {
-          'name': 'Задача 1',
-          'text': 'Текст задачи 1'
-        },
-        {
-            'name': 'Задача 2',
-            'text': 'Текст задачи 2'
-        },
-        {
-            'name': 'Задача 3',
-            'text': 'Текст задачи 3'
-        },
-        {
-            'name': 'Задача 4',
-            'text': 'Текст задачи 5'
-        },
-    ]
-
+    list_queryset = Task.objects.order_by('datetime_create')
+    data = [{'name': item.name, 'text': item.text} for item in list_queryset]
     return JsonResponse({'list': data})
 
 
