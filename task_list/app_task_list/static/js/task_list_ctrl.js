@@ -6,7 +6,7 @@ var TaskListApp = angular.module('TaskListApp', ['ngCookies']);
 TaskListApp.controller('TaskListCtrl', function TaskListController($scope, $http, $cookies) {
   $scope.gel_list_data = function() {
     $http.get('/get_data_json/').then(function(response) {
-      $scope.data_list = response.data.list;
+      $scope.data_dict = response.data.dict;
     });
   }
   $scope.gel_list_data()

@@ -23,8 +23,11 @@ def get_csrf(request):
 
 def get_data_json(request):
     list_queryset = Task.objects.order_by('name')
-    data = [{'name': item.name, 'text': item.text} for item in list_queryset]
-    return JsonResponse({'list': data})
+    data_list = [{'id': item.id, 'name': item.name, 'text': item.text}
+                 for item in list_queryset]
+    data_dict = {obj['id']: {'name': obj['name'], 'text': obj['text']}
+                 for obj in data_list}
+    return JsonResponse({'dict': data_dict})
 
 
 def add_data_json(request):
@@ -52,7 +55,11 @@ def add_data_json(request):
         add_form = EditTaskForm(data_dict, request.FILES)
         if add_form.is_valid():
             add_form.save()
+
+
             return render_to_response("index.html")
+
+
         raise Http404("Sending data form not valid.")
     else:
         raise Http404("Not POST or no data.")
