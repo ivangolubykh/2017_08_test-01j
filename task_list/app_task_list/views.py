@@ -26,4 +26,4 @@ def get_data_json(request):
         },
     ]
 
-    return JsonResponse({'data': data})
+    return JsonResponse({'list': data})

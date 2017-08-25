@@ -10,25 +10,45 @@
 <body ng-controller="TaskListCtrl">
     <h2 class="text-center">SPA-приложение "Cписок задач"</h2>
 
-    <div class="table-responsive">
-        <table class="table table-hover">
-            <thead>
-                <tr>
-                    <th class="text-center">Задача</th>
-                    <th class="text-center">Изменить</th>
-                    <th class="text-center">Удалить</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr class="text-center" ng-repeat="a in [1, 2, 3]">
-                <td>{{a}}</td>
-                <td>upd</td>
-                <td>del</td>
-                </tr>
-                </tr>
-            </tbody>
+    <form class="container">
+      <div class="form-group row">
+        <label for="task_name" class="col-sm-2 col-form-label col-form-label-lg">Название задачи:</label>
+        <div class="col-sm-10">
+          <input type="text" class="form-control form-control-lg" id="task_name" placeholder="Название задачи">
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="task_text" class="col-sm-2 col-form-label col-form-label-lg">Текст задачи:</label>
+        <div class="col-sm-10">
+          <input type="text" class="form-control form-control-lg" id="task_text" placeholder="Текст задачи">
+        </div>
+      </div>
+      <button type="submit" class="btn btn-secondary">Добавить новую задачу</button>
+    </form>
 
-        </table>
+    <hr>
+
+    <div class="table-responsive">
+      <table class="table table-hover">
+        <thead>
+          <tr>
+              <th class="text-center">Задача</th>
+              <th class="text-center">Изменить</th>
+              <th class="text-center">Удалить</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr ng-repeat="data in data_list">
+            <td>
+              <p><b><i>{{data.name}}</i></b></p>
+              <p>{{data.text}}</p>
+            </td>
+          <td class="text-center" style="vertical-align: middle;"><button class="btn btn-secondary" type="button">Изменить</button></td>
+          <td class="text-center" style="vertical-align: middle;"><button class="btn btn-secondary" type="button">Удалить</button></td>
+          </tr>
+        </tbody>
+
+      </table>
     </div>
 
 </body>
