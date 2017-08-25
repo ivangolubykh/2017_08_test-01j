@@ -22,7 +22,7 @@
       <div class="form-group row">
         <label for="task_text" class="col-sm-2 col-form-label col-form-label-lg">Текст задачи:</label>
         <div class="col-sm-10">
-          <input type="text" class="form-control form-control-lg" id="task_text" placeholder="Текст задачи" ng-model="add_task.text">
+          <textarea type="text" class="form-control form-control-lg" id="task_text" placeholder="Текст задачи" ng-model="add_task.text"></textarea>
         </div>
       </div>
       <button type="submit" class="btn btn-secondary" ng-click="add(add_task, AddTaskForm)">Добавить новую задачу</button>
