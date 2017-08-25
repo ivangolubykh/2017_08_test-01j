@@ -150,6 +150,8 @@ STATICFILES_DIRS = (
 MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 MEDIA_URL = '/media/'
 
+AUTH_USER_MODEL = 'app_task_list.User'
+
 if DEBUG:
     from socket import gethostbyaddr
 
