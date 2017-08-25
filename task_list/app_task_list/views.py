@@ -22,7 +22,7 @@ def get_csrf(request):
 
 
 def get_data_json(request):
-    list_queryset = Task.objects.order_by('datetime_create')
+    list_queryset = Task.objects.order_by('name')
     data = [{'name': item.name, 'text': item.text} for item in list_queryset]
     return JsonResponse({'list': data})
 

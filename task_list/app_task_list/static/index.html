@@ -8,10 +8,10 @@
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular-cookies.js"></script>
     <script src="/static/js/task_list_ctrl.js"></script>
 </head>
-<body>
+<body ng-controller="TaskListCtrl">
     <h2 class="text-center">SPA-приложение "Cписок задач"</h2>
 
-    <form class="container" name="AddTaskForm" ng-controller="TaskAddCtrl">
+    <form class="container" name="AddTaskForm" iiiiing-controller="TaskAddCtrl">
       <input type="hidden" name="csrfmiddlewaretoken" value="{{csrf_token_value}}" ng-model="add_task.csrfmiddlewaretoken">
       <div class="form-group row">
         <label for="task_name" class="col-sm-2 col-form-label col-form-label-lg">Название задачи:</label>
@@ -30,7 +30,7 @@
 
     <hr>
 
-    <div class="table-responsive" ng-controller="TaskListCtrl">
+    <div class="table-responsive" iiiiing-controller="TaskListCtrl">
       <table class="table table-hover">
         <thead>
           <tr>

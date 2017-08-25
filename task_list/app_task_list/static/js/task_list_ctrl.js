@@ -2,14 +2,15 @@
 
 
 var TaskListApp = angular.module('TaskListApp', ['ngCookies']);
-TaskListApp.controller('TaskListCtrl', function TaskListController($scope, $http) {
-  $http.get('/get_data_json/').then(function(response) {
-    $scope.data_list = response.data.list;
-  });
-});
 
+TaskListApp.controller('TaskListCtrl', function TaskListController($scope, $http, $cookies) {
+  $scope.gel_list_data = function() {
+    $http.get('/get_data_json/').then(function(response) {
+      $scope.data_list = response.data.list;
+    });
+  }
+  $scope.gel_list_data()
 
-TaskListApp.controller('TaskAddCtrl', function TaskAddController($scope, $http, $cookies) {
   $scope.add = function(add_task, AddTaskForm) {
     if(AddTaskForm.$valid){
       $http.get("/get_csrf/", add_task).then(function success (response) {
@@ -22,7 +23,12 @@ TaskListApp.controller('TaskAddCtrl', function TaskAddController($scope, $http, 
           },
           data: $scope.add_task,
         }
-        $http(req).then(function(response_success){console.log('2xx - Все хорошо:\n', response_success);}, function(response_error){console.log('4xx - error response:\n', response_error);});
+        $http(req).then(function(response_success){
+            console.log('2xx - Все хорошо:\n', response_success);
+            $scope.gel_list_data();
+        }, function(response_error){
+            console.log('4xx - error response:\n', response_error);
+        });
       });
     }
   };
