@@ -1,19 +1,35 @@
 <!DOCTYPE html>
-<html lang="ru" ng-app="">
+<html lang="ru" ng-app="TaskLstApp">
 <head>
     <meta charset="utf-8">
     <title>Cписок задач</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+    <script src="/static/js/task_list_ctrl.js"></script>
 </head>
-<body>
-    <p>Тут будет SPA-приложение "Cписок задач"</p>
-    <div>
-      <label>Name:</label>
-      <input type="text" ng-model="yourName" placeholder="Enter a name here">
-      <hr>
-      <h1>Hello
-{{yourName}}!</h1>
-         <p>1 + 2 = {{ 1 + 2 }}</p>
+<body ng-controller="TaskListCtrl">
+    <h2 class="text-center">SPA-приложение "Cписок задач"</h2>
+
+    <div class="table-responsive">
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th class="text-center">Задача</th>
+                    <th class="text-center">Изменить</th>
+                    <th class="text-center">Удалить</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="text-center" ng-repeat="a in [1, 2, 3]">
+                <td>{{a}}</td>
+                <td>upd</td>
+                <td>del</td>
+                </tr>
+                </tr>
+            </tbody>
+
+        </table>
     </div>
+
 </body>
 </html>
