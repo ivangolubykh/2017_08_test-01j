@@ -55,10 +55,7 @@ def add_data_json(request):
         add_form = EditTaskForm(data_dict, request.FILES)
         if add_form.is_valid():
             add_form.save()
-
-
-            return render_to_response("index.html")
-
+            return JsonResponse({'dict': add_form.data})
 
         raise Http404("Sending data form not valid.")
     else:

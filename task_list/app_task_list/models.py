@@ -58,10 +58,8 @@ class Task(models.Model):
         db_index=False,
         # При unique=True значение поля должно быть уникальным.
         unique=False,
-        help_text='Текстовое описание погоды, например:'
-                  ' Солнечно',
-        verbose_name='Текстовое описание погоды, например:'
-                     ' Солнечно',
+        help_text='Текстовое описание задачи',
+        verbose_name='Текстовое описание задачи',
         )
 
     def __str__(self):

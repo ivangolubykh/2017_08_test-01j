@@ -24,7 +24,7 @@ TaskListApp.controller('TaskListCtrl', function TaskListController($scope, $http
           data: $scope.add_task,
         }
         $http(req).then(function(response_success){
-            console.log('2xx - Все хорошо:\n', response_success);
+            console.log('2xx - Все хорошо, данные добавлены:\n', response_success.data.dict);
             $scope.gel_list_data();
         }, function(response_error){
             console.log('4xx - error response:\n', response_error);
@@ -33,3 +33,6 @@ TaskListApp.controller('TaskListCtrl', function TaskListController($scope, $http
     }
   };
 });
+
+
+//           $scope.data_dict[1] = {name: 'n1', text: 't1156'}

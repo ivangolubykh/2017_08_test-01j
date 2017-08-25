@@ -285,7 +285,7 @@ CREATE TABLE `django_migrations` (
   `name` varchar(255) NOT NULL,
   `applied` datetime NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -294,7 +294,7 @@ CREATE TABLE `django_migrations` (
 
 LOCK TABLES `django_migrations` WRITE;
 /*!40000 ALTER TABLE `django_migrations` DISABLE KEYS */;
-INSERT INTO `django_migrations` VALUES (1,'contenttypes','0001_initial','2017-08-25 15:35:24'),(2,'contenttypes','0002_remove_content_type_name','2017-08-25 15:35:25'),(3,'auth','0001_initial','2017-08-25 15:35:25'),(4,'auth','0002_alter_permission_name_max_length','2017-08-25 15:35:25'),(5,'auth','0003_alter_user_email_max_length','2017-08-25 15:35:25'),(6,'auth','0004_alter_user_username_opts','2017-08-25 15:35:25'),(7,'auth','0005_alter_user_last_login_null','2017-08-25 15:35:25'),(8,'auth','0006_require_contenttypes_0002','2017-08-25 15:35:25'),(9,'auth','0007_alter_validators_add_error_messages','2017-08-25 15:35:25'),(10,'auth','0008_alter_user_username_max_length','2017-08-25 15:35:25'),(11,'app_task_list','0001_initial','2017-08-25 15:35:25'),(12,'admin','0001_initial','2017-08-25 15:35:25'),(13,'admin','0002_logentry_remove_auto_add','2017-08-25 15:35:25'),(14,'sessions','0001_initial','2017-08-25 15:35:25'),(15,'app_task_list','0002_task','2017-08-25 15:59:06');
+INSERT INTO `django_migrations` VALUES (1,'contenttypes','0001_initial','2017-08-25 15:35:24'),(2,'contenttypes','0002_remove_content_type_name','2017-08-25 15:35:25'),(3,'auth','0001_initial','2017-08-25 15:35:25'),(4,'auth','0002_alter_permission_name_max_length','2017-08-25 15:35:25'),(5,'auth','0003_alter_user_email_max_length','2017-08-25 15:35:25'),(6,'auth','0004_alter_user_username_opts','2017-08-25 15:35:25'),(7,'auth','0005_alter_user_last_login_null','2017-08-25 15:35:25'),(8,'auth','0006_require_contenttypes_0002','2017-08-25 15:35:25'),(9,'auth','0007_alter_validators_add_error_messages','2017-08-25 15:35:25'),(10,'auth','0008_alter_user_username_max_length','2017-08-25 15:35:25'),(11,'app_task_list','0001_initial','2017-08-25 15:35:25'),(12,'admin','0001_initial','2017-08-25 15:35:25'),(13,'admin','0002_logentry_remove_auto_add','2017-08-25 15:35:25'),(14,'sessions','0001_initial','2017-08-25 15:35:25'),(15,'app_task_list','0002_task','2017-08-25 15:59:06'),(16,'app_task_list','0003_auto_20170825_2258','2017-08-25 22:58:16');
 /*!40000 ALTER TABLE `django_migrations` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -332,4 +332,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-08-25 15:59:10
+-- Dump completed on 2017-08-25 22:58:19
