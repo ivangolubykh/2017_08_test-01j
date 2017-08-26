@@ -47,7 +47,7 @@ class Task(models.Model):
         )
 
     text = models.TextField(
-        max_length=100,
+        max_length=2000,
         # При blank=True поле может быть пустым (т.е. оно необязательное):
         blank=True,
         # Если строковое поле содержит null=True, это означает, что оно может

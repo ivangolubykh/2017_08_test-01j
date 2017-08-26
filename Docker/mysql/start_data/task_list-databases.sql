@@ -32,7 +32,7 @@ CREATE TABLE `app_task_list_task` (
   KEY `app_task_list_task_datetime_create_6155480f` (`datetime_create`),
   KEY `app_task_list_task_datetime_update_c0571717` (`datetime_update`),
   KEY `app_task_list_task_name_de37a87b` (`name`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -41,6 +41,7 @@ CREATE TABLE `app_task_list_task` (
 
 LOCK TABLES `app_task_list_task` WRITE;
 /*!40000 ALTER TABLE `app_task_list_task` DISABLE KEYS */;
+INSERT INTO `app_task_list_task` VALUES (1,'2017-08-26 00:31:30','2017-08-26 00:31:30','Парадокс двух конвертов','Проводится лотерея. Предлагаются два конверта, в которых находятся две суммы денег, причём в одном из конвертов сумма отличается от суммы в другом конверте ровно в два раза. Никакие действия (измерительные и т. п.) совершать с конвертами нельзя. Можно лишь открыть один любой конверт и посчитать в нем деньги, после чего сделать выбор — взять этот конверт или взять другой конверт, чтобы получить большую сумму.\n\nПредположим, что мы увидели в одном из конвертов x рублей. Тогда в другом может быть 0,5x или 2x руб. Таким образом, считая, что в другом конверте равновероятно находится либо 0,5x, либо 2x, определяем средний выигрыш в случае, если мы возьмём другой конверт: (0,5x+2x)/2=1,25x рублей (соответственно, разумнее выбирать именно его, хотя мы и не знаем, больше там денег или меньше), что противоречит интуитивной симметрии задачи.'),(2,'2017-08-26 00:31:46','2017-08-26 00:31:46','Написать текст для этой задачи.',''),(3,'2017-08-26 00:32:04','2017-08-26 00:32:04','Выполнить планы с 5-го по 17-й включительно.','1.    Вспомнить детство и побегать за бабочками с сачком.\n2.    Сходить в лес за ягодами и грибами.\n3.    Сплести венок на голову из полевых цветов.\n4.    Побегать босиком по траве.\n5.    Устроить пикник с друзьями на берегу реки или в лесу.\n6.    Испечь картошку на костре.\n7.    Искупаться в реке или озере.\n8.    Прыгнуть через костер на праздник Купала.\n9.    Устроить день Водяного и обливаться водой.\n10.  Покататься на качелях.\n11.  Поспать в гамаке.\n12.  Искупаться ночью «нагишом».\n13.  Поймать кузнечика.\n14.  Полежать на траве, разглядывая облака.\n15.  Залезть на невысокое дерево.\n16.  Сходить в поход на несколько дней с палатками.\n17.  Увидеть красивую радугу и загадать желание.\n18.  Побегать под дождем.\n19.  Устроить летнюю фотосессию в цветах.\n20.  С разбега прыгнуть в воду.');
 /*!40000 ALTER TABLE `app_task_list_task` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -285,7 +286,7 @@ CREATE TABLE `django_migrations` (
   `name` varchar(255) NOT NULL,
   `applied` datetime NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -294,7 +295,7 @@ CREATE TABLE `django_migrations` (
 
 LOCK TABLES `django_migrations` WRITE;
 /*!40000 ALTER TABLE `django_migrations` DISABLE KEYS */;
-INSERT INTO `django_migrations` VALUES (1,'contenttypes','0001_initial','2017-08-25 15:35:24'),(2,'contenttypes','0002_remove_content_type_name','2017-08-25 15:35:25'),(3,'auth','0001_initial','2017-08-25 15:35:25'),(4,'auth','0002_alter_permission_name_max_length','2017-08-25 15:35:25'),(5,'auth','0003_alter_user_email_max_length','2017-08-25 15:35:25'),(6,'auth','0004_alter_user_username_opts','2017-08-25 15:35:25'),(7,'auth','0005_alter_user_last_login_null','2017-08-25 15:35:25'),(8,'auth','0006_require_contenttypes_0002','2017-08-25 15:35:25'),(9,'auth','0007_alter_validators_add_error_messages','2017-08-25 15:35:25'),(10,'auth','0008_alter_user_username_max_length','2017-08-25 15:35:25'),(11,'app_task_list','0001_initial','2017-08-25 15:35:25'),(12,'admin','0001_initial','2017-08-25 15:35:25'),(13,'admin','0002_logentry_remove_auto_add','2017-08-25 15:35:25'),(14,'sessions','0001_initial','2017-08-25 15:35:25'),(15,'app_task_list','0002_task','2017-08-25 15:59:06'),(16,'app_task_list','0003_auto_20170825_2258','2017-08-25 22:58:16');
+INSERT INTO `django_migrations` VALUES (1,'contenttypes','0001_initial','2017-08-25 15:35:24'),(2,'contenttypes','0002_remove_content_type_name','2017-08-25 15:35:25'),(3,'auth','0001_initial','2017-08-25 15:35:25'),(4,'auth','0002_alter_permission_name_max_length','2017-08-25 15:35:25'),(5,'auth','0003_alter_user_email_max_length','2017-08-25 15:35:25'),(6,'auth','0004_alter_user_username_opts','2017-08-25 15:35:25'),(7,'auth','0005_alter_user_last_login_null','2017-08-25 15:35:25'),(8,'auth','0006_require_contenttypes_0002','2017-08-25 15:35:25'),(9,'auth','0007_alter_validators_add_error_messages','2017-08-25 15:35:25'),(10,'auth','0008_alter_user_username_max_length','2017-08-25 15:35:25'),(11,'app_task_list','0001_initial','2017-08-25 15:35:25'),(12,'admin','0001_initial','2017-08-25 15:35:25'),(13,'admin','0002_logentry_remove_auto_add','2017-08-25 15:35:25'),(14,'sessions','0001_initial','2017-08-25 15:35:25'),(15,'app_task_list','0002_task','2017-08-25 15:59:06'),(16,'app_task_list','0003_auto_20170825_2258','2017-08-25 22:58:16'),(17,'app_task_list','0004_auto_20170826_0030','2017-08-26 00:30:50');
 /*!40000 ALTER TABLE `django_migrations` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -332,4 +333,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-08-25 22:58:19
+-- Dump completed on 2017-08-26  0:32:31
