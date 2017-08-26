@@ -5,6 +5,7 @@ from django.http.response import HttpResponse
 from django.template.context import Context
 from django.middleware import csrf
 from django.http import Http404
+from django.shortcuts import get_object_or_404
 import json
 
 from .forms import EditTaskForm
@@ -31,7 +32,6 @@ def get_data_json(request):
 
 
 def add_data_json(request):
-
     def normalize_data(data_dict):
         '''Возвращает обратно словарь с готовыми ключами 'name' и 'text'
         или False, если данных не хватает или они не верны
@@ -56,6 +56,40 @@ def add_data_json(request):
         if add_form.is_valid():
             add_form.save()
             return JsonResponse({'dict': add_form.data})
+
+        raise Http404("Sending data form not valid.")
+    else:
+        raise Http404("Not POST or no data.")
+
+
+def edit_data_json(request):
+    def normalize_data_for_edit(data_dict):
+        '''Возвращает обратно словарь с готовыми ключами 'name' и 'text'
+        или False, если данных не хватает или они не верны
+        '''
+        try:
+            data_dict['id'] = int(data_dict['id'])
+            if 'name' in data_dict and len(data_dict['name']) > 0:
+                if 'text' not in data_dict or len(data_dict['text']) == 0:
+                    data_dict['text'] = ''
+                    return data_dict
+                elif 'text' in data_dict and len(data_dict['text']) > 0:
+                    return data_dict
+        except Exception:
+            pass
+        return False
+
+    if request.method == "POST" \
+            and request.content_type == 'application/json':
+        data_dict = normalize_data_for_edit(json.loads(request.body.decode()))
+        if not data_dict:
+            raise Http404("Incorrect sending data.")
+
+        edit_model = get_object_or_404(Task, id=data_dict['id'])
+        edit_form = EditTaskForm(data_dict, instance=edit_model)
+        if edit_form.is_valid():
+            edit_form.save()
+            return JsonResponse({'dict': edit_form.data})
 
         raise Http404("Sending data form not valid.")
     else:

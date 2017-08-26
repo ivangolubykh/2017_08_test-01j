@@ -25,7 +25,7 @@
           <textarea type="text" class="form-control form-control-lg" id="task_text" placeholder="Текст задачи" ng-model="add_task.text"></textarea>
         </div>
       </div>
-      <button type="submit" class="btn btn-secondary" ng-click="add(add_task, AddTaskForm)">Добавить новую задачу</button>
+      <button type="submit" class="btn btn-secondary" ng-click="add(AddTaskForm)">Добавить новую задачу</button>
     </form>
 
     <hr>
@@ -45,7 +45,7 @@
               <p><b><i>{{value.name}}</i></b></p>
               <p>{{value.text}}</p>
             </td>
-            <td class="text-center" style="vertical-align: middle;"><button class="btn btn-secondary" type="button">Изменить {{key}}</button></td>
+            <td class="text-center" style="vertical-align: middle;"><button class="btn btn-secondary" type="button" ng-click="edit(key)">Изменить</button></td>
             <td class="text-center" style="vertical-align: middle;"><button class="btn btn-secondary" type="button">Удалить</button></td>
           </tr>
         </tbody>
