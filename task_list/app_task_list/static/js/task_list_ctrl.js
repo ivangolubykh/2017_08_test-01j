@@ -67,4 +67,39 @@ TaskListApp.controller('TaskListCtrl', function TaskListController($scope, $http
     }
   };
 
+  $scope.del = function(id_editing) {
+//    var new_name = prompt('Исправьте название задачи:', $scope.data_dict[id_editing]['name']);
+//    if ((new_name != null) && (new_name != undefined) && (new_name.length > 0)) {
+//      var new_text = prompt('Исправьте текст задачи:', $scope.data_dict[id_editing]['text']);
+//      if ((new_text == null) || (new_text == undefined) || (new_name.length == 0)) {
+//        new_text = '';
+//      }
+
+      $http.get("/get_csrf/").then(function success (response) {
+//        $scope.csrf_token_value=response.data;
+        var req = {
+          method: 'POST',
+          url: '/del_data_json/',
+          headers: {
+            'X-CSRFToken': $cookies.get('csrftoken'),
+          },
+          data: {'id': id_editing},
+        }
+        $http(req).then(function(response_success){
+            console.log('2xx - Все хорошо, данные удалены:\n', response_success.data.dict);
+
+            delete $scope.data_dict[id_editing];
+
+        }, function(response_error){
+            console.log('4xx - error response:\n', response_error);
+        });
+      });
+
+//    }
+//    else {
+//      alert("Так нельзя, это обязательное поле!");
+//    }
+  };
+
+
 });

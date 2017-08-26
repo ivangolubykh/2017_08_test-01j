@@ -94,3 +94,29 @@ def edit_data_json(request):
         raise Http404("Sending data form not valid.")
     else:
         raise Http404("Not POST or no data.")
+
+
+def del_data_json(request):
+    def normalize_data_for_del(data_dict):
+        '''Возвращает обратно словарь с готовыми ключами 'name' и 'text'
+        или False, если данных не хватает или они не верны
+        '''
+        try:
+            data_dict['id'] = int(data_dict['id'])
+            return data_dict
+        except Exception:
+            pass
+        return False
+
+    if request.method == "POST" \
+            and request.content_type == 'application/json':
+        data_dict = normalize_data_for_del(json.loads(request.body.decode()))
+        if not data_dict:
+            raise Http404("Incorrect sending data.")
+
+        del_model = get_object_or_404(Task, id=data_dict['id'])
+        if del_model:
+            del_model.delete()
+        return JsonResponse({'dict': {'id': data_dict['id']}})
+    else:
+        raise Http404("Not POST or no data.")

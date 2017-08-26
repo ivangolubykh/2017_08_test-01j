@@ -15,7 +15,7 @@ Including another URLconf
 """
 from django.conf.urls import url, include
 from .views import main_page, get_csrf, get_data_json, add_data_json, \
-    edit_data_json
+    edit_data_json, del_data_json
 
 
 urlpatterns = [
@@ -23,5 +23,6 @@ urlpatterns = [
     url(r'^get_data_json/$', get_data_json, name='get_data_json'),
     url(r'^add_data_json/$', add_data_json, name='add_data_json'),
     url(r'^edit_data_json/$', edit_data_json, name='edit_data_json'),
+    url(r'^del_data_json/$', del_data_json, name='del_data_json'),
     url(r'^get_csrf/$', get_csrf, name='get_csrf'),
 ]
