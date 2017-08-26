@@ -14,9 +14,15 @@ Including another URLconf
     2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
 """
 from django.conf.urls import url, include
-from .views import main_page
+from .views import main_page, get_csrf, get_data_json, add_data_json, \
+    edit_data_json, del_data_json
 
 
 urlpatterns = [
     url(r'^$', main_page, name='main'),
+    url(r'^get_data_json/$', get_data_json, name='get_data_json'),
+    url(r'^add_data_json/$', add_data_json, name='add_data_json'),
+    url(r'^edit_data_json/$', edit_data_json, name='edit_data_json'),
+    url(r'^del_data_json/$', del_data_json, name='del_data_json'),
+    url(r'^get_csrf/$', get_csrf, name='get_csrf'),
 ]
