@@ -1,7 +1,7 @@
 from django.shortcuts import render, render_to_response
 from django.http import JsonResponse
 from django.template.base import Template
-from django.http.response import HttpResponse
+from django.http.response import HttpResponse, FileResponse
 from django.template.context import Context
 from django.middleware import csrf
 from django.http import Http404
@@ -13,7 +13,7 @@ from .models import Task
 
 
 def main_page(request):
-    return render_to_response("index.html")
+    return FileResponse(open('templates/index.html', 'rb'))
 
 
 def get_csrf(request):
