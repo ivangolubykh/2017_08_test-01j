@@ -16,12 +16,21 @@ Including another URLconf
 from django.conf.urls import url, include
 from django.contrib import admin
 from django.conf import settings
+from django.views.generic.base import RedirectView
+
+starturl = r'^portfolio/2017_08_test-01j/'
 
 urlpatterns = [
-    url(r'^admin/', admin.site.urls),
+    # url(r'^admin/', admin.site.urls),
+    # редирект с главной страницы в папку:
+    url(r'^$', RedirectView.
+        as_view(url='portfolio/2017_08_test-01j/')),
 ]
 urlpatterns += [
-    url(r'^', include('app_task_list.urls')),
+    url(starturl+'admin/', admin.site.urls),
+]
+urlpatterns += [
+    url(starturl, include('app_task_list.urls')),
 ]
 
 if settings.DEBUG:
