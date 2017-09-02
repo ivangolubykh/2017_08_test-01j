@@ -5,7 +5,7 @@ var TaskListApp = angular.module('TaskListApp', ['ngCookies']);
 
 TaskListApp.controller('TaskListCtrl', function TaskListController($scope, $http, $cookies) {
   $scope.gel_list_data = function() {
-    $http.get('/get_data_json/').then(function(response) {
+    $http.get(project_dir+'get_data_json/').then(function(response) {
       $scope.data_dict = response.data.dict;
     });
   }
@@ -13,11 +13,11 @@ TaskListApp.controller('TaskListCtrl', function TaskListController($scope, $http
 
   $scope.add = function(AddTaskForm) {
     if(AddTaskForm.$valid){
-      $http.get("/get_csrf/").then(function success (response) {
+      $http.get(project_dir+"get_csrf/").then(function success (response) {
 //        $scope.csrf_token_value=response.data;
         var req = {
           method: 'POST',
-          url: '/add_data_json/',
+          url: project_dir+'add_data_json/',
           headers: {
             'X-CSRFToken': $cookies.get('csrftoken'),
           },
@@ -44,11 +44,11 @@ TaskListApp.controller('TaskListCtrl', function TaskListController($scope, $http
         new_text = '';
       }
 
-      $http.get("/get_csrf/").then(function success (response) {
+      $http.get(project_dir+"get_csrf/").then(function success (response) {
 //        $scope.csrf_token_value=response.data;
         var req = {
           method: 'POST',
-          url: '/edit_data_json/',
+          url: project_dir+'edit_data_json/',
           headers: {
             'X-CSRFToken': $cookies.get('csrftoken'),
           },
@@ -71,11 +71,11 @@ TaskListApp.controller('TaskListCtrl', function TaskListController($scope, $http
   };
 
   $scope.del = function(id_editing) {
-      $http.get("/get_csrf/").then(function success (response) {
+      $http.get(project_dir+"get_csrf/").then(function success (response) {
 //        $scope.csrf_token_value=response.data;
         var req = {
           method: 'POST',
-          url: '/del_data_json/',
+          url: project_dir+'del_data_json/',
           headers: {
             'X-CSRFToken': $cookies.get('csrftoken'),
           },
