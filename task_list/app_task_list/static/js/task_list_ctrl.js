@@ -25,7 +25,10 @@ TaskListApp.controller('TaskListCtrl', function TaskListController($scope, $http
         }
         $http(req).then(function(response_success){
             console.log('2xx - Все хорошо, данные добавлены:\n', response_success.data.dict);
-            $scope.gel_list_data();
+            var edit_data = response_success.data.dict;
+            $scope.data_dict[edit_data.id] = {name: edit_data.name, text: edit_data.text};
+//            $scope.gel_list_data();
+
         }, function(response_error){
             console.log('4xx - error response:\n', response_error);
         });
@@ -68,13 +71,6 @@ TaskListApp.controller('TaskListCtrl', function TaskListController($scope, $http
   };
 
   $scope.del = function(id_editing) {
-//    var new_name = prompt('Исправьте название задачи:', $scope.data_dict[id_editing]['name']);
-//    if ((new_name != null) && (new_name != undefined) && (new_name.length > 0)) {
-//      var new_text = prompt('Исправьте текст задачи:', $scope.data_dict[id_editing]['text']);
-//      if ((new_text == null) || (new_text == undefined) || (new_name.length == 0)) {
-//        new_text = '';
-//      }
-
       $http.get("/get_csrf/").then(function success (response) {
 //        $scope.csrf_token_value=response.data;
         var req = {
@@ -95,11 +91,6 @@ TaskListApp.controller('TaskListCtrl', function TaskListController($scope, $http
         });
       });
 
-//    }
-//    else {
-//      alert("Так нельзя, это обязательное поле!");
-//    }
   };
-
 
 });
