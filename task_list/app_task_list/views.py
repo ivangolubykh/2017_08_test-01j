@@ -55,7 +55,7 @@ def add_data_json(request):
         add_form = EditTaskForm(data_dict, request.FILES)
         if add_form.is_valid():
             saved_form = add_form.save()
-            return JsonResponse({'dict': {'id:': saved_form.id,
+            return JsonResponse({'dict': {'id': saved_form.id,
                                           'name': saved_form.name,
                                           'text': saved_form.text}
                                  })
